@@ -200,6 +200,18 @@ server = function(input, output) {
       abline(h=0)
       
       
+    }  else if (input$computation == "borne1" & input$airetype == 1){
+      
+      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="",ylab="")
+      
+    }  else if (input$computation == "borne1" & input$airetype == 2){
+      
+      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="",ylab="")
+      
+    }  else if (input$computation == "borne2" & input$airetype == 1){
+      
+      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="",ylab="")
+
     }  
     
   )
