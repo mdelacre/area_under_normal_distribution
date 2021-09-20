@@ -1,6 +1,7 @@
 library(devtools)
 library(shiny)
 library(gplots)
+library(mathjaxr)
 
 ui <- fluidPage(
   
@@ -54,26 +55,61 @@ ui <- fluidPage(
 
   ), fluidRow( # row 4: Informations requises   
     
-    column(width=8,offset=0,
-           h1(strong("Informations requises :"), style = "font-size:20px;")),
-    
-  ), ###fluidRow( # row 5: Lesditesinfo   
-    wellPanel(
-      fluidRow("test1")
-      ,fluidRow("test2")
-      ,fluidRow("test3")
-      
-    )### --> Faire rentrer ceci dans un conditionalPanel, pour en prévoir un différent 
-     ### en fonction du calcul demandé
+    column(width=5,offset=0,
+           h1(strong("Informations requises :"), style = "font-size:20px;")
+    ), column(width=5,offset=2,
+                 h1(strong("Résultats :"), style = "font-size:20px;")
+    )
     
   ), fluidRow( # row 6: plots et résultats
-    
+
+    column(width=2,offset=0,
+        conditionalPanel(
+          condition = "input.computation == 'aire' & input.airetype==1",
+          numericInput(inputId="mean", label=withMathJax("\\(\\mu :\\)"),value=0, min = -1000000, max = 1000000,step=.0001),
+          numericInput(inputId="sd", label=withMathJax("\\(\\sigma :\\)"),value=1, min = 0, max = 1000000,step=.0001),
+          numericInput(inputId="binf", label="Borne inférieure : ",value=-1.96, min = -1000000, max = 1000000,step=.0001),
+          numericInput(inputId="bsup", label="Borne supérieure : ",value=1.96, min = -1000000, max = 1000000,step=.0001)
+           ),
+        conditionalPanel(
+          condition = "input.computation == 'aire' & input.airetype > 1",
+          numericInput(inputId="mean", label=withMathJax("\\(\\mu :\\)"),value=0, min = -1000000, max = 1000000,step=.0001),
+          numericInput(inputId="sd", label=withMathJax("\\(\\sigma :\\)"),value=1, min = 0, max = 1000000,step=.0001),
+          numericInput(inputId="binf", label="Borne : ",value=-1.96, min = -1000000, max = 1000000,step=.0001)
+        ),
+        conditionalPanel(
+          condition = "input.computation == 'borne1' & input.borne1type==1",
+          numericInput(inputId="mean", label=withMathJax("\\(\\mu :\\)"),value=0, min = -11000000, max = 1000000,step=.0001),
+          numericInput(inputId="sd", label=withMathJax("\\(\\sigma :\\)"),value=1, min = 0, max = 1000000,step=.0001),
+          numericInput(inputId="aire1", label="Aire : ",value=.5, min = 0, max = 1,step=.000001)
+        ),
+        conditionalPanel(
+          condition = "input.computation == 'borne1' & input.borne1type==2",
+          numericInput(inputId="mean", label=withMathJax("\\(\\mu :\\)"),value=0, min = -11000000, max = 1000000,step=.0001),
+          numericInput(inputId="sd", label=withMathJax("\\(\\sigma :\\)"),value=1, min = 0, max = 1000000,step=.0001),
+          numericInput(inputId="aire2", label="Aire : ",value=.5, min = 0, max = 1,step=.000001)
+        ),
+        conditionalPanel(
+          condition = "input.computation == 'borne2' & input.borne2type==1",
+          numericInput(inputId="mean", label=withMathJax("\\(\\mu :\\)"),value=0, min = -11000000, max = 1000000,step=.0001),
+          numericInput(inputId="sd", label=withMathJax("\\(\\sigma :\\)"),value=1, min = 0, max = 1000000,step=.0001),
+          numericInput(inputId="aire3", label="Aire : ",value=.5, min = 0, max = 1,step=.000001)
+        )
+    ),column(width = 12,offset=0,
+                 mainPanel(
+                   plotOutput("plot"), # Place for the graph
+    )
+        
+    )
     
   )
   
-
 )
-    
+
+
+
+
+
 # Define server logic to plot various variables against mpg ----
 server = function(input, output) {
 }
