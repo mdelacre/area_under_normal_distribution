@@ -145,15 +145,15 @@ server = function(input, output) {
     } else if (input$computation == "aire" & input$airetype == 2){
       
       par(mfrow=c(2,1),xpd=TRUE,bty="n")
-      x=seq(input$mean2-5*input$sd2,input$mean2+5*input$sd2,.01)
-      y = dnorm(x,input$mean2,input$sd2)
+      x=seq(input$mean-5*input$sd,input$mean+5*input$sd,.01)
+      y = dnorm(x,input$mean,input$sd)
       plot(x,y,cex=.3,main="Distribution des scores bruts",ylab="densité",xlab="scores X",xaxt="n")
-      segments(x0=input$b, y0= 0, x1=input$b, y1=dnorm(input$b,input$mean2,input$sd2), lty = 1, xpd = FALSE,col="darkblue")
+      segments(x0=input$b, y0= 0, x1=input$b, y1=dnorm(input$b,input$mean,input$sd), lty = 1, xpd = FALSE,col="darkblue")
       polygon(c(input$b,x[x<=input$b]),c(y[x<=input$b],0), col="lightblue")
-      segments(x0=input$mean2, y0= 0, x1=input$mean2, y1=dnorm(input$mean2,input$mean2,input$sd2), lty = 2, xpd = FALSE,col="darkblue")
-      hauteur=max(dnorm(x,input$mean2,input$sd2))/10
+      segments(x0=input$mean, y0= 0, x1=input$mean, y1=dnorm(input$mean,input$mean,input$sd), lty = 2, xpd = FALSE,col="darkblue")
+      hauteur=max(dnorm(x,input$mean,input$sd))/10
       text(input$b,-hauteur,labels=as.character(round(input$b,2)),col="darkblue",cex=.8)
-      text(input$mean2,-hauteur,labels=as.character(input$mean2),col="black",cex=.8)
+      text(input$mean,-hauteur,labels=as.character(input$mean),col="black",cex=.8)
       par(xpd=FALSE)
       abline(h=0)
       
@@ -161,7 +161,7 @@ server = function(input, output) {
       x=seq(-5,5,.01)
       z = dnorm(x,0,1)
       plot(x,dnorm(x,0,1),cex=.3,main="Distribution des scores Z",ylab="densité",xlab="scores z",xaxt="n")
-      z_inf <- (input$b - input$mean2)/input$sd2
+      z_inf <- (input$b - input$mean)/input$sd
       segments(x0=z_inf, y0=0, x1=z_inf, y1=dnorm(z_inf,0,1), lty = par("lty"), xpd = FALSE)
       polygon(c(z_inf,x[x<=z_inf]),c(z[x<=z_inf],0), col="lightgreen")
       segments(x0=0, y0= (-.5), x1=0, y1=dnorm(0,0,1), lty = 2, xpd = FALSE,col="black")
@@ -174,15 +174,15 @@ server = function(input, output) {
     }  else if (input$computation == "aire" & input$airetype == 3){
       
       par(mfrow=c(2,1),xpd=TRUE,bty="n")
-      x=seq(input$mean2-5*input$sd2,input$mean2+5*input$sd2,.01)
-      y = dnorm(x,input$mean2,input$sd2)
+      x=seq(input$mean-5*input$sd,input$mean+5*input$sd,.01)
+      y = dnorm(x,input$mean,input$sd)
       plot(x,y,cex=.3,main="Distribution des scores bruts",ylab="densité",xlab="scores X",xaxt="n")
-      segments(x0=input$b, y0= 0, x1=input$b, y1=dnorm(input$b,input$mean2,input$sd2), lty = 1, xpd = FALSE,col="darkblue")
+      segments(x0=input$b, y0= 0, x1=input$b, y1=dnorm(input$b,input$mean,input$sd), lty = 1, xpd = FALSE,col="darkblue")
       polygon(c(x[x>=input$b],input$b),c(y[x>=input$b],0), col="lightblue")
-      segments(x0=input$mean2, y0= 0, x1=input$mean2, y1=dnorm(input$mean2,input$mean2,input$sd2), lty = 2, xpd = FALSE,col="darkblue")
-      hauteur=max(dnorm(x,input$mean2,input$sd2))/10
+      segments(x0=input$mean, y0= 0, x1=input$mean, y1=dnorm(input$mean,input$mean,input$sd), lty = 2, xpd = FALSE,col="darkblue")
+      hauteur=max(dnorm(x,input$mean,input$sd))/10
       text(input$b,-hauteur,labels=as.character(round(input$b,2)),col="darkblue",cex=.8)
-      text(input$mean2,-hauteur,labels=as.character(input$mean2),col="black",cex=.8)
+      text(input$mean,-hauteur,labels=as.character(input$mean),col="black",cex=.8)
       par(xpd=FALSE)
       abline(h=0)
 
@@ -190,7 +190,7 @@ server = function(input, output) {
       x=seq(-5,5,.01)
       z = dnorm(x,0,1)
       plot(x,dnorm(x,0,1),cex=.3,main="Distribution des scores Z",ylab="densité",xlab="scores z",xaxt="n")
-      z_inf <- (input$b - input$mean2)/input$sd2
+      z_inf <- (input$b - input$mean)/input$sd
       segments(x0=z_inf, y0=0, x1=z_inf, y1=dnorm(z_inf,0,1), lty = par("lty"), xpd = FALSE)
       polygon(c(x[x>=z_inf],z_inf),c(z[x>=z_inf],0), col="lightgreen")
       segments(x0=0, y0= (-.5), x1=0, y1=dnorm(0,0,1), lty = 2, xpd = FALSE,col="black")
