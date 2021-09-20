@@ -202,15 +202,15 @@ server = function(input, output) {
       
     }  else if (input$computation == "borne1" & input$airetype == 1){
       
-      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="",ylab="")
+      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="")
       
     }  else if (input$computation == "borne1" & input$airetype == 2){
       
-      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="",ylab="")
+      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="")
       
     }  else if (input$computation == "borne2" & input$airetype == 1){
       
-      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="",ylab="")
+      plot(1,1,main="En construction",col="white",xaxt="n",yaxt="n",bty="n",xlab="")
 
     }  
     
